@@ -30,7 +30,7 @@ if host_machine.system() == 'windows' and cpp.get_argument_syntax() != 'msvc'
   add_project_arguments('-D__USE_MINGW_ANSI_STDIO=1', language: 'cpp')
 endif
 
-if cpp.has_function('ppoll', prefix: '#include <poll.h>')
+if host_machine.system() == 'linux' or cpp.has_function('ppoll', prefix: '#include <poll.h>')
   add_project_arguments('-DUSE_PPOLL', language: 'cpp')
 endif
 
